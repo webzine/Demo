@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="cs" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <title>Knihovní systém - demo</title>
+
+    <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css" type="text/css">
+    <link rel="stylesheet" media="print" href="{$basePath}/css/print.css" type="text/css">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/jquery.nette.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/jquery.ajaxForm.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+	<div class="caption">Knihovní systém</div>
+        <div class="subcaption">Demo</div>
+	<hr>
+        {snippet flashes}
+        {foreach $flashes as $flash}<div class="flash {$flash->type}">{$flash->message}</div>{/foreach}
+        {/snippet}
+        
+	@{include #content}
+    </div>
+
+    <div id="footer">
+        <a href="{link Book:}">Knihy</a> |
+        {if $user->isLoggedIn()}
+            <a href="{link User:}">Uživatelé</a> |
+            <a href="{link Sign:out}">Odhlásit {$user->getIdentity()->username}</a>
+        {else}
+            <a href="{link Sign:register}">Registrace</a> |
+            <a href="{link Sign:in}">Přihlášení</a>
+        {/if}
+    </div>
+</body>
+</html>

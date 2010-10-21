@@ -1,0 +1,15 @@
+{block content}
+<h1>{$book->name}</h1>
+
+{if !$user->isLoggedIn()}
+<p>
+    <b>Autor:</b> {$book->author}<br>
+    <b>Stav:</b> {$book->stateName} <span n:if="!is_null($book->stateDescription)">{$book->stateDescription}</span>
+</p>
+
+<p>
+    <a href="{link default}" title="Seznam knih">&laquo; zpět na seznam knih</a>
+</p>
+{else}
+    {control bookForm}
+{/if}

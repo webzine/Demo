@@ -1,0 +1,18 @@
+{block content}
+
+<h1>Seznam uživatelů</h1>
+<table>
+    <tr>
+        <th>Uživatelské jméno</th>
+        <th>Email</th>
+        <th>&nbsp;</th>
+    </tr>
+    <tr n:foreach="$users as $u">
+        <td>{$u->username}</td>
+        <td><a href="mailto:{$u->email}">{$u->email}</a></td>
+        <td>
+            {?$presenter["removeUser"]["id"]->value = $u->id}
+            {control removeUser}
+        </td>
+    </tr>
+</table>

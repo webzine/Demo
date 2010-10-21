@@ -1,0 +1,25 @@
+@{block content}
+
+<h1>Seznam knih</h1>
+
+{snippet table}
+<table>
+    <tr>
+        <th>Název knihy</th>
+        <th>Autor</th>
+        <th>Stav</th>
+        <th n:if="$user->isLoggedIn()">&nbsp;</th>
+    </tr>
+    <tr n:foreach="$books as $book">
+        <td><a href="{link detail, $book->id}">{$book->name}</a></td>
+        <td>{$book->author}</td>
+        <td><a href="{link changeState!, $book->id}" class="ajax" title="Změnit stav">{$book->stateName}</a></td>
+        <td n:if="$user->isLoggedIn()">
+            {?$presenter["removeBook"]["id"]->value = $book->id}
+            {control removeBook}
+        </td>
+    </tr>
+</table>
+{/snippet}
+<br>
+<a href="{link Book:add}" n:if="$user->isLoggedIn()">Přidat knihu &raquo;</a>
